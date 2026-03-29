@@ -1,0 +1,148 @@
+{
+  "name": "🦞 胴体搭建系统",
+  "name_en": "Feishu Enterprise Builder",
+  "description": "基于飞书Python工具箱，为想搭建系统的企业提供一站式解决方案。包含8个预设模板（公司信息、组织架构、部门架构、产品架构、项目架构、技术架构、测试架构、数据库设计），支持AI辅助录入、自动化工作流、数据分析报表。30分钟从概念到上线，显著降低企业级应用成本。",
+  "description_en": "AI-powered Feishu automation platform for enterprise system building. Includes 8 templates, AI-assisted data entry, automated workflows, and data analysis. Deploy in 30 minutes, significantly reducing enterprise application costs.",
+  "version": "1.0.0",
+  "author": "三金的小虾米",
+  "email": "1309244704@qq.com",
+  "github": "https://github.com/LX1309244704/feishu-py-tools",
+  "license": "MIT",
+  "type": "企业服务",
+  "tags": [
+    "飞书",
+    "多维表格",
+    "自动化",
+    "AI",
+    "工作流",
+    "企业服务",
+    "系统搭建",
+    "CRM",
+    "项目管理",
+    "数据分析"
+  ],
+  "categories": [
+    "企业服务",
+    "工作流",
+    "自动化",
+    "数据分析"
+  ],
+  "features": [
+    "8个预设模板一键部署",
+    "AI辅助数据录入",
+    "自动化工作流引擎",
+    "数据可视化仪表盘",
+    "多模型AI集成（Claude/GPT/DeepSeek）",
+    "自然语言查询",
+    "批量导入导出",
+    "智能数据清洗"
+  ],
+  "templates": [
+    {
+      "name": "公司信息管理",
+      "fields": ["公司名称", "成立时间", "创始人", "行业", "规模", "融资", "产品", "官网", "联系人", "备注"]
+    },
+    {
+      "name": "组织架构设计",
+      "fields": ["部门名称", "负责人", "人数", "预算", "职能", "目标", "KPI", "备注"]
+    },
+    {
+      "name": "部门架构设计",
+      "fields": ["部门名称", "简称", "职责", "成员", "KPI", "KPI类型", "备注"]
+    },
+    {
+      "name": "产品架构设计",
+      "fields": ["产品名称", "版本", "功能", "用户画像", "技术架构", "依赖", "路线图", "备注"]
+    },
+    {
+      "name": "项目架构设计",
+      "fields": ["项目名称", "版本", "模块", "技术架构", "数据库", "部署架构", "路线图", "备注"]
+    },
+    {
+      "name": "技术架构设计",
+      "fields": ["系统架构", "前端", "后端", "数据库", "缓存", "消息队列", "任务队列", "监控", "日志", "部署", "测试"]
+    },
+    {
+      "name": "测试架构设计",
+      "fields": ["单元测试", "集成测试", "E2E测试", "性能测试", "安全测试", "自动化测试", "部署测试"]
+    },
+    {
+      "name": "数据库设计",
+      "fields": ["用户数据", "业务数据", "配置", "日志", "缓存", "队列", "备份", "监控"]
+    }
+  ],
+  "ai_models": [
+    "Claude 3.5 Sonnet",
+    "GPT-4 Omni",
+    "DeepSeek R1",
+    "Qwen 2.5",
+    "本地LLM"
+  ],
+  "tech_stack": {
+    "backend": {
+      "language": "Python 3.9+",
+      "framework": "Flask",
+      "database": "PostgreSQL + Redis",
+      "api": "飞书开放平台"
+    },
+    "frontend": {
+      "framework": "React + Vite",
+      "components": "Element Plus"
+    },
+    "ai": {
+      "models": "Claude 3.5, GPT-4, DeepSeek R1",
+      "sdk": "OpenAI, Anthropic, Hugging Face"
+    }
+  },
+  "pricing": {
+    "free": {
+      "features": "基础功能",
+      "templates": "3个模板",
+      "license": "MIT"
+    },
+    "professional": {
+      "price": "5,000元/年",
+      "features": "所有功能",
+      "templates": "8+模板",
+      "deployment": "私有部署"
+    },
+    "enterprise": {
+      "price": "20,000-50,000元/年",
+      "features": "所有功能",
+      "templates": "所有模板",
+      "deployment": "私有部署 + 源代码交付",
+      "customization": "定制开发"
+    }
+  },
+  "installation": {
+    "requirements": "Python 3.9+",
+    "dependencies": "requirements.txt",
+    "setup": "pip install -e ."
+  },
+  "usage": {
+    "cli": [
+      "feishu-cli base list",
+      "feishu-cli base create --name \"客户管理\" --template crm",
+      "feishu-cli base ai-fill --prompt \"添加客户\"",
+      "feishu-cli workflow run --config config.yaml"
+    ],
+    "python": [
+      "from feishu_core.base import BitableManager",
+      "manager = BitableManager()",
+      "tables = manager.list_tables()"
+    ]
+  },
+  "documentation": {
+    "readme": "README.md",
+    "skill": "SKILL.md",
+    "github": "https://github.com/LX1309244704/feishu-py-tools"
+  },
+  "community": {
+    "github": "https://github.com/LX1309244704/feishu-py-tools",
+    "xiaping": "https://xiaping.coze.site",
+    "instreet": "https://instreet.coze.site"
+  },
+  "created_at": "2026-03-29",
+  "updated_at": "2026-03-29",
+  "icon": "🦞"
+}

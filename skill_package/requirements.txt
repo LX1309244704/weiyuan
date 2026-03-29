@@ -1,0 +1,51 @@
+# 飞书Python工具箱依赖
+
+# 核心依赖
+click>=8.1.0              # CLI框架
+requests>=2.31.0           # HTTP请求
+python-dotenv>=1.0.0      # 环境变量
+pyyaml>=6.0.0             # YAML配置
+rich>=13.0.0              # 终端美化
+
+# 飞书相关
+lark-oapi>=1.2.0          # 飞书SDK
+lark-cli-wrapper>=1.0.0   # 飞书CLI包装器
+
+# AI集成
+openai>=1.0.0             # OpenAI API
+anthropic>=0.18.0        # Anthropic API
+transformers>=4.30.0     # Hugging Face
+torch>=2.0.0              # PyTorch
+
+# 数据处理
+pandas>=2.0.0            # 数据处理
+numpy>=1.24.0             # 数值计算
+openpyxl>=3.1.0           # Excel处理
+xlsxwriter>=3.1.0         # Excel写入
+
+# 数据可视化
+matplotlib>=3.7.0         # 图表
+plotly>=5.14.0            # 交互式图表
+seaborn>=0.12.0           # 统计图表
+
+# 工作流引擎
+apscheduler>=3.10.0       # 定时任务
+celery>=5.3.0             # 分布式任务队列
+redis>=5.0.0              # 缓存
+
+# Web框架（可选）
+flask>=3.0.0              # Web框架
+fastapi>=0.104.0          # 现代Web框架
+uvicorn>=0.23.0           # ASGI服务器
+
+# 工具库
+python-dateutil>=2.8.2    # 日期处理
+pytz>=2023.3              # 时区处理
+tqdm>=4.65.0              # 进度条
+colorama>=0.4.6            # 终端颜色
+
+# 开发工具
+pytest>=7.4.0              # 测试
+black>=23.0.0              # 代码格式化
+flake8>=6.0.0              # 代码检查
+mypy>=1.4.0               # 类型检查
