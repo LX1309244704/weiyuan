@@ -1,20 +1,16 @@
 """
 飞书核心功能模块
 """
-from feishu_core.base import BitableManager
-from feishu_core.doc import DocManager
-from feishu_core.task import TaskManager
-from feishu_core.calendar import CalendarManager
-from feishu_core.message import MessageManager
-from feishu_core.drive import DriveManager
-from feishu_core.cli_wrapper import LarkCLIWrapper
+from feishu_core.bitable_manager import BitableManager
+from feishu_core.doc_manager import DocManager
+from feishu_core.calendar_manager import CalendarManager
+from feishu_core.task_manager import TaskManager
+from feishu_core.message_manager import MessageManager
 
 __all__ = [
     'BitableManager',
     'DocManager',
-    'TaskManager',
     'CalendarManager',
+    'TaskManager',
     'MessageManager',
-    'DriveManager',
-    'LarkCLIWrapper',
 ]
