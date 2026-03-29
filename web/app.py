@@ -114,7 +114,7 @@ class WebApp:
         # 日历API
         @self.app.route('/api/calendar/events', methods=['GET', 'POST'])
         def api_calendar_events():
-            from feeshu_core.calendar_manager import CalendarManager
+            from feishu_core.calendar_manager import CalendarManager
             manager = CalendarManager(
                 app_id=request.args.get('app_id'),
                 app_secret=request.args.get('app_secret')
@@ -200,7 +200,7 @@ class WebApp:
             return jsonify(result)
         
         # 数据清洗API
-        @app.route('/ai/clean', methods=['POST'])
+        @self.app.route('/api/ai/clean', methods=['POST'])
         def api_ai_clean():
             from ai_integration.data_cleaner import DataCleaner
             from ai_integration.claude_model import ClaudeModel
@@ -262,3 +262,12 @@ class WebApp:
         print(f"🚀 启动飞书Python工具箱Web界面...")
         print(f"📱 访问地址: http://{host}:{port}")
         self.app.run(host=host, port=port, debug=debug)
+
+
+# 创建应用实例（用于Railway等平台自动发现）
+web_app = WebApp()
+app = web_app.app
+
+
+if __name__ == '__main__':
+    web_app.run(debug=True)
