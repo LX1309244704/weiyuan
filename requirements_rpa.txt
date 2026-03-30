@@ -16,8 +16,8 @@ xlsxwriter>=3.1.0
 # HTTP requests
 requests>=2.31.0
 
-# Concurrency
-concurrent-futures>=3.1.1
+# Note: concurrent.futures is built into Python 3.2+
+# No need to install separately
 
 # Feishu/Lark (in main requirements)
 # lark-oapi>=1.2.0
