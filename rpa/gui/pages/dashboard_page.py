@@ -4,7 +4,7 @@
 from PySide6.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QGridLayout,
     QLabel, QFrame, QScrollArea, QPushButton,
-    QTableWidget, QTableWidgetItem, QHeaderView
+    QTableWidget, QTableWidgetItem, QHeaderView, QApplication, QMessageBox
 )
 from PySide6.QtGui import QFont, QColor, QIcon
 from PySide6.QtCore import Qt, QDateTime
@@ -63,10 +63,10 @@ class DashboardPage(QWidget):
         # 顶部欢迎区域
         welcome_layout = QHBoxLayout()
         
-        welcome_text = QLabel("<h1>🤖 RPA机器人流程自动化工具</h1>")
+        welcome_text = QLabel("<h1>🤖 微元 Weiyuan - RPA自动化平台</h1>")
         welcome_text.setOpenExternalLinks(True)
         
-        datetime_label = QLabel(f"欢迎使用！当前时间：{QDateTime.currentDateTime().toString('yyyy-MM-dd hh:mm:ss")
+        datetime_label = QLabel(f"欢迎使用！当前时间：{QDateTime.currentDateTime().toString('yyyy-MM-dd hh:mm:ss')}")
         datetime_label.setStyleSheet("color: #666; font-size: 14px;")
         
         welcome_layout.addWidget(welcome_text)
@@ -274,7 +274,10 @@ class DashboardPage(QWidget):
     
     def _on_new_flow(self):
         """新建流程按钮点击"""
-        from PySide6.QtWidgets.QApplication.instance().activeWindow().tab_widget.setCurrentIndex(1)
+        # 切换到流程管理页面
+        main_window = QApplication.instance().activeWindow()
+        if main_window and hasattr(main_window, 'tab_widget'):
+            main_window.tab_widget.setCurrentIndex(1)
     
     def _on_run_flow(self):
         """执行流程按钮点击"""
@@ -284,9 +287,9 @@ class DashboardPage(QWidget):
     def _rerun_flow(self, flow_name):
         """重新执行流程"""
         # 后续实现
-        from PySide6.QtWidgets.QMessageBox.information(self, "执行", f"重新执行流程: {flow_name}")
+        QMessageBox.information(self, "执行", f"重新执行流程: {flow_name}")
     
     def _use_template(self, template_name):
         """使用模板"""
         # 后续实现
-        from PySide6.QtWidgets.QMessageBox.information(self, "模板", f"使用模板: {template_name}")
+        QMessageBox.information(self, "模板", f"使用模板: {template_name}")

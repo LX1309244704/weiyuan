@@ -1,5 +1,5 @@
 """
-RPA工具PC客户端主入口
+微元 Weiyuan - PC客户端主入口
 基于PySide6开发
 """
 import sys
@@ -7,7 +7,7 @@ import os
 from pathlib import Path
 from PySide6.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
-    QTabWidget, QStatusBar, QMenuBar, QMenu, QSplitter,
+    QTabWidget, QStatusBar, QMenuBar, QMenu, QLabel,
     QToolBar, QMessageBox, QFileDialog
 )
 from PySide6.QtGui import QIcon, QAction
@@ -21,18 +21,32 @@ from .pages.template_page import TemplatePage
 from .pages.plugin_page import PluginPage
 from .pages.settings_page import SettingsPage
 
+# 导入资源
+from . import resources
+
+
+def get_icon(icon_name: str) -> QIcon:
+    """获取图标"""
+    icon_path = resources.get_icon_path(icon_name)
+    if icon_path:
+        return QIcon(icon_path)
+    return QIcon()
+
 
 class RPAMainWindow(QMainWindow):
-    """RPA工具主窗口"""
+    """微元RPA主窗口"""
     
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("RPA机器人流程自动化工具")
+        self.setWindowTitle("微元 Weiyuan - RPA自动化平台")
         self.resize(1200, 800)
         self.setMinimumSize(900, 600)
         
         # 全局设置
-        self.settings = QSettings("FeishuTools", "RPA Client")
+        self.settings = QSettings("Weiyuan", "RPAClient")
+        
+        # 确保资源存在
+        resources.ensure_icons_exist()
         
         # 初始化UI
         self._init_ui()
@@ -45,7 +59,6 @@ class RPAMainWindow(QMainWindow):
     
     def _init_ui(self):
         """初始化主界面"""
-        # 中心部件
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
         main_layout = QVBoxLayout(central_widget)
@@ -66,12 +79,12 @@ class RPAMainWindow(QMainWindow):
         self.plugin_page = PluginPage()
         self.settings_page = SettingsPage()
         
-        self.tab_widget.addTab(self.dashboard_page, QIcon(":/icons/dashboard.png"), "首页")
-        self.tab_widget.addTab(self.flow_page, QIcon(":/icons/flow.png"), "流程管理")
-        self.tab_widget.addTab(self.execution_page, QIcon(":/icons/history.png"), "执行记录")
-        self.tab_widget.addTab(self.template_page, QIcon(":/icons/template.png"), "模板市场")
-        self.tab_widget.addTab(self.plugin_page, QIcon(":/icons/plugin.png"), "插件中心")
-        self.tab_widget.addTab(self.settings_page, QIcon(":/icons/settings.png"), "设置")
+        self.tab_widget.addTab(self.dashboard_page, get_icon("dashboard.png"), "首页")
+        self.tab_widget.addTab(self.flow_page, get_icon("flow.png"), "流程管理")
+        self.tab_widget.addTab(self.execution_page, get_icon("history.png"), "执行记录")
+        self.tab_widget.addTab(self.template_page, get_icon("template.png"), "模板市场")
+        self.tab_widget.addTab(self.plugin_page, get_icon("plugin.png"), "插件中心")
+        self.tab_widget.addTab(self.settings_page, get_icon("settings.png"), "设置")
         
         main_layout.addWidget(self.tab_widget)
         
@@ -85,19 +98,19 @@ class RPAMainWindow(QMainWindow):
         # 文件菜单
         file_menu = menubar.addMenu("文件")
         
-        new_flow_action = QAction(QIcon(":/icons/new.png"), "新建流程", self)
+        new_flow_action = QAction(get_icon("new.png"), "新建流程", self)
         new_flow_action.setShortcut("Ctrl+N")
         new_flow_action.triggered.connect(self._new_flow)
         file_menu.addAction(new_flow_action)
         
-        open_flow_action = QAction(QIcon(":/icons/open.png"), "打开流程", self)
+        open_flow_action = QAction(get_icon("open.png"), "打开流程", self)
         open_flow_action.setShortcut("Ctrl+O")
         open_flow_action.triggered.connect(self._open_flow)
         file_menu.addAction(open_flow_action)
         
         file_menu.addSeparator()
         
-        save_action = QAction(QIcon(":/icons/save.png"), "保存", self)
+        save_action = QAction(get_icon("save.png"), "保存", self)
         save_action.setShortcut("Ctrl+S")
         save_action.triggered.connect(self._save_current)
         file_menu.addAction(save_action)
@@ -117,19 +130,19 @@ class RPAMainWindow(QMainWindow):
         # 执行菜单
         run_menu = menubar.addMenu("执行")
         
-        run_action = QAction(QIcon(":/icons/run.png"), "执行当前流程", self)
+        run_action = QAction(get_icon("run.png"), "执行当前流程", self)
         run_action.setShortcut("F5")
         run_action.triggered.connect(self._run_current_flow)
         run_menu.addAction(run_action)
         
-        stop_action = QAction(QIcon(":/icons/stop.png"), "停止执行", self)
+        stop_action = QAction(get_icon("stop.png"), "停止执行", self)
         stop_action.setShortcut("Shift+F5")
         stop_action.triggered.connect(self._stop_execution)
         run_menu.addAction(stop_action)
         
         run_menu.addSeparator()
         
-        debug_action = QAction(QIcon(":/icons/debug.png"), "调试执行", self)
+        debug_action = QAction(get_icon("debug.png"), "调试执行", self)
         debug_action.setShortcut("F6")
         debug_action.triggered.connect(self._debug_flow)
         run_menu.addAction(debug_action)
@@ -163,15 +176,14 @@ class RPAMainWindow(QMainWindow):
         toolbar.setMovable(False)
         self.addToolBar(toolbar)
         
-        # 工具栏按钮
-        toolbar.addAction(QIcon(":/icons/new.png"), "新建流程", self._new_flow)
-        toolbar.addAction(QIcon(":/icons/open.png"), "打开流程", self._open_flow)
-        toolbar.addAction(QIcon(":/icons/save.png"), "保存", self._save_current)
+        toolbar.addAction(get_icon("new.png"), "新建流程", self._new_flow)
+        toolbar.addAction(get_icon("open.png"), "打开流程", self._open_flow)
+        toolbar.addAction(get_icon("save.png"), "保存", self._save_current)
         toolbar.addSeparator()
-        toolbar.addAction(QIcon(":/icons/run.png"), "执行", self._run_current_flow)
-        toolbar.addAction(QIcon(":/icons/stop.png"), "停止", self._stop_execution)
+        toolbar.addAction(get_icon("run.png"), "执行", self._run_current_flow)
+        toolbar.addAction(get_icon("stop.png"), "停止", self._stop_execution)
         toolbar.addSeparator()
-        toolbar.addAction(QIcon(":/icons/settings.png"), "设置", lambda: self.tab_widget.setCurrentIndex(5))
+        toolbar.addAction(get_icon("settings.png"), "设置", lambda: self.tab_widget.setCurrentIndex(5))
     
     def _init_statusbar(self):
         """初始化状态栏"""
@@ -191,13 +203,11 @@ class RPAMainWindow(QMainWindow):
     
     def closeEvent(self, event):
         """窗口关闭事件"""
-        # 保存窗口状态
         self.settings.setValue("geometry", self.saveGeometry())
         self.settings.setValue("windowState", self.saveState())
         
-        # 确认退出
         reply = QMessageBox.question(
-            self, "确认退出", "确定要退出RPA工具吗？",
+            self, "确认退出", "确定要退出微元RPA工具吗？",
             QMessageBox.Yes | QMessageBox.No,
             QMessageBox.No
         )
@@ -207,7 +217,6 @@ class RPAMainWindow(QMainWindow):
         else:
             event.ignore()
     
-    # 菜单动作函数
     def _on_tab_changed(self, index):
         """标签页切换"""
         self.status_bar.showMessage(f"切换到 {self.tab_widget.tabText(index)} 页面")
@@ -257,7 +266,6 @@ class RPAMainWindow(QMainWindow):
     
     def _stop_execution(self):
         """停止执行"""
-        # 后续实现
         self.status_bar.showMessage("已停止执行")
     
     def _debug_flow(self):
@@ -284,32 +292,36 @@ class RPAMainWindow(QMainWindow):
     
     def _open_docs(self):
         """打开文档"""
-        # 后续实现
-        QMessageBox.information(self, "文档", "使用文档正在开发中...")
+        import webbrowser
+        webbrowser.open("https://github.com/LX1309244704/weiyuan")
     
     def _show_about(self):
         """显示关于对话框"""
         QMessageBox.about(
-            self, "关于RPA工具",
-            "<h3>RPA机器人流程自动化工具</h3>"
-            "<p>版本：1.0.0</p>"
-            "<p>基于飞书Python工具箱开发</p>"
+            self, "关于微元Weiyuan",
+            "<h2>微元 Weiyuan</h2>"
+            "<p><b>全生态RPA自动化平台</b></p>"
+            "<p>版本：2.0.0</p>"
+            "<p>支持：飞书、微信、抖音、小红书等多平台自动化</p>"
             "<p>© 2026 三金的小虾米</p>"
+            "<p>邮箱：1309244704@qq.com</p>"
             "<p><a href='https://github.com/LX1309244704/weiyuan'>GitHub仓库</a></p>"
         )
 
 
 def main():
     """启动客户端"""
-    # 高DPI适配
     QApplication.setHighDpiScaleFactorRoundingPolicy(Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
     QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
     QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
     
     app = QApplication(sys.argv)
-    app.setApplicationName("RPA工具")
-    app.setOrganizationName("FeishuTools")
-    app.setWindowIcon(QIcon(":/icons/app.png"))
+    app.setApplicationName("微元Weiyuan")
+    app.setOrganizationName("Weiyuan")
+    
+    app_icon = get_icon("app.png")
+    if app_icon:
+        app.setWindowIcon(app_icon)
     
     window = RPAMainWindow()
     window.show()
