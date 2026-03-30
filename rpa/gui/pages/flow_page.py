@@ -5,7 +5,7 @@ from PySide6.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QSplitter,
     QListWidget, QListWidgetItem, QTextEdit, QPushButton,
     QFileDialog, QMessageBox, QDialog, QFormLayout,
-    QLineEdit, QDialogButtonBox, QTabWidget
+    QLineEdit, QDialogButtonBox, QTabWidget, QLabel
 )
 from PySide6.QtGui import QFont, QIcon, QSyntaxHighlighter, QTextCharFormat, QColor
 from PySide6.QtCore import Qt, QRegularExpression
