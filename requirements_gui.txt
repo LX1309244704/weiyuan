@@ -1,8 +1,8 @@
-# PC客户端GUI依赖
-# Qt框架
+# PC Client GUI Dependencies
+# Qt framework
 PySide6>=6.5.0
 PySide6-Addons>=6.5.0
 PySide6-Essentials>=6.5.0
 
-# 其他
-pyinstaller>=5.13.0  # 打包exe用
+# Other
+pyinstaller>=5.13.0

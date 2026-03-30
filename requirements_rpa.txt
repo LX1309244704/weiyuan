@@ -1,5 +1,5 @@
-# RPA工具依赖
-# 核心依赖
+# RPA Tools Dependencies
+# Core dependencies
 click>=8.1.0
 pyyaml>=6.0.0
 jsonschema>=4.17.0
@@ -7,44 +7,43 @@ jinja2>=3.1.0
 tabulate>=0.9.0
 python-dateutil>=2.8.2
 
-# 数据处理
+# Data processing
 pandas>=2.0.0
 numpy>=1.24.0
 openpyxl>=3.1.0
 xlsxwriter>=3.1.0
 
-# HTTP请求
+# HTTP requests
 requests>=2.31.0
 
-# 并发
+# Concurrency
 concurrent-futures>=3.1.1
 
-# 飞书相关（已在主requirements中）
+# Feishu/Lark (in main requirements)
 # lark-oapi>=1.2.0
 
-# 微信插件
-itchat-uos>=1.5.0.dev0  # 支持最新微信版本
-Pillow>=9.0.0  # 显示登录二维码
-wechatwork>=0.9.0  # 企业微信SDK
-wechatpy>=2.0.0  # 微信公众号SDK
+# WeChat plugins
+itchat-uos>=1.5.0.dev0
+Pillow>=9.0.0
+wechatwork>=0.9.0
+wechatpy>=2.0.0
 
-# UI自动化
-pyautogui>=0.9.54  # 桌面UI自动化
-selenium>=4.10.0   # 浏览器自动化
-webdriver-manager>=4.0.0  # 自动管理浏览器驱动
-opencv-python>=4.8.0  # 图像识别
+# UI automation
+pyautogui>=0.9.54
+selenium>=4.10.0
+webdriver-manager>=4.0.0
+opencv-python>=4.8.0
 
 # OCR
-paddleocr>=2.7.0  # 百度飞桨OCR
-paddlepaddle>=2.5.0  # PaddlePaddle框架
+paddleocr>=2.7.0
+paddlepaddle>=2.5.0
 
-# AI增强
-openai>=1.0.0  # OpenAI API
-anthropic>=0.18.0  # Anthropic Claude API
-dashscope>=1.14.0  # 阿里云通义千问API
+# AI enhancement
+openai>=1.0.0
+anthropic>=0.18.0
+dashscope>=1.14.0
 
-# Web控制台
-flask>=2.3.0  # Web后端
-flask-cors>=4.0.0  # 跨域支持
-flask-socketio>=5.3.0  # WebSocket实时推送
-
+# Web console
+flask>=2.3.0
+flask-cors>=4.0.0
+flask-socketio>=5.3.0
